@@ -102,5 +102,38 @@ request.onload = () => {
     .attr("cy", function(d) {
       return h - yScale(d.Seconds);
     })
-    .attr("class", "circle");
+    .attr("class", "circle")
+    .style("fill", d => (d.Doping === "" ? "orange" : "blue"));
+
+  // Handmade legend
+  svg
+    .append("rect")
+    .attr("x", w - 210)
+    .attr("y", 89)
+    .attr("width", 20)
+    .attr("height", 20)
+    // .style("opacity", 0.7)
+    .style("fill", "blue");
+  svg
+    .append("rect")
+    .attr("x", w - 210)
+    .attr("y", 114)
+    .attr("width", 20)
+    .attr("height", 20)
+    // .style("opacity", 0.7)
+    .style("fill", "orange");
+  svg
+    .append("text")
+    .attr("x", w - 185)
+    .attr("y", 100)
+    .text("Riders with Doping Allegations")
+    .style("font-size", "15px")
+    .attr("alignment-baseline", "middle");
+  svg
+    .append("text")
+    .attr("x", w - 185)
+    .attr("y", 125)
+    .text("No Doping Allegations")
+    .style("font-size", "15px")
+    .attr("alignment-baseline", "middle");
 };

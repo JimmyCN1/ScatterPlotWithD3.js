@@ -23,8 +23,7 @@ main {
 } */
 
 .circle {
-  fill: blue;
-  opacity: 0.3;
+  opacity: 0.5;
   border-style: solid;
   /* stroke-width: 2px; */
   stroke: black;

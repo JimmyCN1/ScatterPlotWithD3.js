@@ -10,7 +10,7 @@ request.onload = () => {
   console.log(json);
 
   const margin = 70;
-  const w = 1000 - margin * 2;
+  const w = 1000;
   const h = 450;
 
   var parseYear = d3.timeParse("%Y");
@@ -64,4 +64,43 @@ request.onload = () => {
 
   // add y-axis
   svg.append("g").call(d3.axisLeft(yScale));
+
+  // add x-axis label
+  // svg
+  //   .append("text")
+  //   .attr("transform", "translate(" + w / 2 + " ," + (h + 40) + ")")
+  //   .style("text-anchor", "middle")
+  //   .text("Year");
+
+  // add y-axis label
+  svg
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin)
+    .attr("x", 0 - 150)
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Time (minutes)");
+
+  // Define the div for the tooltip
+  let toolTip = d3
+    .select("main")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  // Add the scatterplot
+  svg
+    .selectAll("dot")
+    .data(json)
+    .enter()
+    .append("circle")
+    .attr("r", 15)
+    .attr("cx", function(d) {
+      return xScale(d.Year);
+    })
+    .attr("cy", function(d) {
+      return h - yScale(d.Seconds);
+    })
+    .attr("class", "circle");
 };

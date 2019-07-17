@@ -15,11 +15,19 @@ main {
   padding: 0px; */
   background-color: white;
 }
-.bar {
+/* .bar {
   display: inline-flex;
 }
 .bar:hover {
   fill: white;
+} */
+
+.circle {
+  fill: blue;
+  opacity: 0.3;
+  border-style: solid;
+  /* stroke-width: 2px; */
+  stroke: black;
 }
 .tooltip {
   position: absolute;

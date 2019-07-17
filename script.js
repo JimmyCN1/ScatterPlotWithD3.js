@@ -14,12 +14,10 @@ request.onload = () => {
   const h = 450;
 
   var parseYear = d3.timeParse("%Y");
-  // const parseTime = d3.timeParse("%M:%S");
 
   // format the data
   json.forEach(function(d) {
     d.ParseYear = parseYear(d.Year);
-    // d.Time = parseTime(d.Time);
   });
 
   // define x and y scales
@@ -29,10 +27,6 @@ request.onload = () => {
     .range([0, w]);
 
   console.log(d3.max(json, d => d.ParseYear));
-
-  // const parsedTime = d3.timeParse("%Y");
-  // const formatTime = d3.timeFormat("%M:%S");
-  // json.forEach(d => (d.parsedTime = parsedTime(d.ParseYear)));
 
   console.log(json);
 
@@ -64,13 +58,6 @@ request.onload = () => {
 
   // add y-axis
   svg.append("g").call(d3.axisLeft(yScale));
-
-  // add x-axis label
-  // svg
-  //   .append("text")
-  //   .attr("transform", "translate(" + w / 2 + " ," + (h + 40) + ")")
-  //   .style("text-anchor", "middle")
-  //   .text("ParseYear");
 
   // add y-axis label
   svg
@@ -135,7 +122,6 @@ request.onload = () => {
     .attr("y", 89)
     .attr("width", 20)
     .attr("height", 20)
-    // .style("opacity", 0.7)
     .style("fill", "blue");
   svg
     .append("rect")
@@ -143,7 +129,6 @@ request.onload = () => {
     .attr("y", 114)
     .attr("width", 20)
     .attr("height", 20)
-    // .style("opacity", 0.7)
     .style("fill", "orange");
   svg
     .append("text")

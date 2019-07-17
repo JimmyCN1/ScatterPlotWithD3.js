@@ -7,30 +7,18 @@ body {
   align-items: center;
   height: 100vh;
   min-height: 100vh;
-  /* background-color: #002642; */
 }
 main {
-  /* width: 400px; */
-  /* height: auto;
-  padding: 0px; */
   background-color: white;
 }
-/* .bar {
-  display: inline-flex;
-}
-.bar:hover {
-  fill: white;
-} */
 
 .circle {
   opacity: 0.5;
   border-style: solid;
-  /* stroke-width: 2px; */
   stroke: black;
 }
 .tooltip {
   position: absolute;
-  /* text-align: center; */
   width: auto;
   height: auto;
   padding: 5px;

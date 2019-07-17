@@ -159,4 +159,20 @@ request.onload = () => {
     .text("No Doping Allegations")
     .style("font-size", "15px")
     .attr("alignment-baseline", "middle");
+
+  // add the plot title
+  svg
+    .append("text")
+    .attr("x", w / 2)
+    .attr("y", 0 - margin / 2)
+    .attr("text-anchor", "middle")
+    .style("font-size", "30px")
+    .text("Doping in Professional Bicycle Racing");
+  svg
+    .append("text")
+    .attr("x", w / 2)
+    .attr("y", 0 - margin / 2 + 26)
+    .attr("text-anchor", "middle")
+    .style("font-size", "22px")
+    .text("35 Fastest Times in Alpe d'Huez");
 };

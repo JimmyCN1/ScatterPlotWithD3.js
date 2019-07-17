@@ -7,7 +7,6 @@ request.open(
 request.send();
 request.onload = () => {
   json = JSON.parse(request.responseText);
-  console.log(json);
 
   const margin = 70;
   const w = 1000;
@@ -26,18 +25,10 @@ request.onload = () => {
     .domain([d3.min(json, d => d.ParseYear), d3.max(json, d => d.ParseYear)])
     .range([0, w]);
 
-  console.log(d3.max(json, d => d.ParseYear));
-
-  console.log(json);
-
   const yScale = d3
     .scaleLinear()
     .domain([d3.min(json, d => d.Seconds), d3.max(json, d => d.Seconds)])
     .range([h, 0]);
-
-  console.log(json[0].Seconds);
-  console.log(d3.max(json, d => d.Seconds));
-  console.log(d3.min(json, d => d.Seconds));
 
   // define svg plot area
   let svg = d3
@@ -94,9 +85,6 @@ request.onload = () => {
     // define tooltip on mouseover
     .on("mouseover", d => {
       const { Time, Year, Name, Nationality, Doping } = d;
-      console.log(
-        `${Name}: ${Nationality}<br>Year: ${Year}, Time: ${Time}<br><br>${Doping}`
-      );
       toolTip
         .transition()
         .duration(200)

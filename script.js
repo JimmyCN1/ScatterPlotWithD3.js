@@ -18,21 +18,21 @@ request.onload = () => {
 
   // format the data
   json.forEach(function(d) {
-    d.Year = parseYear(d.Year);
+    d.ParseYear = parseYear(d.Year);
     // d.Time = parseTime(d.Time);
   });
 
   // define x and y scales
   const xScale = d3
     .scaleTime()
-    .domain([d3.min(json, d => d.Year), d3.max(json, d => d.Year)])
+    .domain([d3.min(json, d => d.ParseYear), d3.max(json, d => d.ParseYear)])
     .range([0, w]);
 
-  console.log(d3.max(json, d => d.Year));
+  console.log(d3.max(json, d => d.ParseYear));
 
   // const parsedTime = d3.timeParse("%Y");
   // const formatTime = d3.timeFormat("%M:%S");
-  // json.forEach(d => (d.parsedTime = parsedTime(d.Year)));
+  // json.forEach(d => (d.parsedTime = parsedTime(d.ParseYear)));
 
   console.log(json);
 
@@ -70,7 +70,7 @@ request.onload = () => {
   //   .append("text")
   //   .attr("transform", "translate(" + w / 2 + " ," + (h + 40) + ")")
   //   .style("text-anchor", "middle")
-  //   .text("Year");
+  //   .text("ParseYear");
 
   // add y-axis label
   svg
@@ -97,13 +97,36 @@ request.onload = () => {
     .append("circle")
     .attr("r", 15)
     .attr("cx", function(d) {
-      return xScale(d.Year);
+      return xScale(d.ParseYear);
     })
     .attr("cy", function(d) {
       return h - yScale(d.Seconds);
     })
     .attr("class", "circle")
-    .style("fill", d => (d.Doping === "" ? "orange" : "blue"));
+    .style("fill", d => (d.Doping === "" ? "orange" : "blue"))
+    // define tooltip on mouseover
+    .on("mouseover", d => {
+      const { Time, Year, Name, Nationality, Doping } = d;
+      console.log(
+        `${Name}: ${Nationality}<br>Year: ${Year}, Time: ${Time}<br><br>${Doping}`
+      );
+      toolTip
+        .transition()
+        .duration(200)
+        .style("opacity", 0.9);
+      toolTip
+        .html(
+          `${Name}: ${Nationality}<br>Year: ${Year}, Time: ${Time}<br><br>${Doping}`
+        )
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 28 + "px");
+    })
+    .on("mouseout", d => {
+      toolTip
+        .transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
 
   // Handmade legend
   svg
